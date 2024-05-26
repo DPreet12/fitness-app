@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema( {
                 message: props => `${props.value} is not a valid phone number!`
             },
             required: [true, "Your phone number is required"]
-    }
+    },
+    logs: [{ type: mongoose.Schema.Types.ObjectId, ref:"Log"}]
 }, {timestamps: true});
 
 userSchema.pre("save", function(next) {

@@ -6,6 +6,8 @@ mongoose.connect(process.env.MONGO_URI);
 //import models
 
 const  User  = require("./user");
+const Log = require("./logs");
+const Exercise = require("./exercise")
 
 const db = mongoose.connection;
 
@@ -15,4 +17,6 @@ db.on("error", (error) => console.log("Database error \n", error));
 module.exports = {
     // models go
     User,
+    Log,
+    Exercise
 }
