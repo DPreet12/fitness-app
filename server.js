@@ -60,7 +60,41 @@ app.get("/profile", isLoggedIn, (req, res) => {
 //aap.get("/pokemon/:id/edit", isLoggedIn, (req,res)=> {})
 //app.delete("/pokeon/:id", isLoggedIn, (req,res)=> {})
 
+app.get("/app/logs", isLoggedIn, (req, res) => {
+    res.render("app/logs",{})
+})
 
+app.post("/app/logs", async (req, res) => {
+    //res.send(req.body)
+    try {
+       
+     const newLog = await Log.create({
+      date: req.body.data,
+      totalSets: req.body.totalSets,
+      repsForEachSet: req.body.repsForEachSet,
+      totalDuration: req.body.totalDuration,
+      totaldistance: req.body.totaldistance
+     })
+   
+   await User.findByIdAndUpdate(req.user._id, {$push: {logs: newLog}})
+   //console.log("---------logs array------",logs)
+   
+     console.log(newLog)
+     res.redirect("/app/logs")
+   
+    } catch (error) {
+       console.log('----- ERROR IN LOGS POST ----', error);
+      //res.send(error)
+     if(error.name === "ValidationError") {
+    req.flash("error", "Please use the appropriate format to fill the workouts");
+     return res.redirect("/app/logs")
+     }
+     req.flash("error", "An unexpected error occurred. Please try again.");
+     res.redirect("/app/logs");
+    }
+   
+   })
+   
 
 const server = app.listen(PORT, () => {
     console.log("You are listening on PORT", PORT);
