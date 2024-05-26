@@ -12,7 +12,8 @@ const PORT = process.env.PORT || 3000;
 
 
 //import models
-const { User } = require("./models");
+const { User, Log, Exercise } = require("./models");
+console.log("Models", {User, Log, Exercise})
 
 
 app.set("view engine", "ejs");
@@ -63,6 +64,23 @@ app.get("/profile", isLoggedIn, (req, res) => {
 app.get("/app/logs", isLoggedIn, (req, res) => {
     res.render("app/logs",{})
 })
+
+app.get("/app/allWorkout", isLoggedIn, async (req, res)=> {
+
+    try {
+        const currentUser = await User.findById(req.user._id).populate("logs")
+        console.log("current user",req.user)
+        //const allWorkout = await Log.find({ user: req.user._id});
+        //console.log("allworkout",allWorkout)
+        const allWorkout = currentUser.logs;
+        res.render("app/allWorkout", {allWorkout: allWorkout})
+    } catch (error) {
+        req.flash("error", "no worlout available")
+        res.redirect("/app/logs")
+    }
+    
+})
+
 
 app.post("/app/logs", async (req, res) => {
     //res.send(req.body)
