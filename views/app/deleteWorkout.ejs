@@ -39,20 +39,21 @@
       </header>
 
 
-    <section class="contact" id="contact">
-        <h2 class="heading">All Workout <span>Logs</span></h2>
-     <% for (let i = 0; i < allWorkout.length; i++) { %>
-     <% let list = allWorkout[i]; %>
-     <p>Date: <%=  list.date %></p>
-     <p>totalSets: <%=  list.totalSets %></p>
-     <p>repsForEachSet: <%=  list.repsForEachSet %></p>
-     <p>totalDuration: <%=  list.totalDuration %></p>
-     <p>totaldistance: <%=  list.totaldistance %></p>
-     <a href="/app/allWorkout/<%= list._id %>/edit/">Edit Log</a>
-     <a href="/app/allWorkout/<%= list._id %>/delete/">Delete Log</a>
-     <% console.log("each workout",list) %>
-     <% } %>
+      <section class="contact" id="contact">
+        <h2 class="heading">Delete Workout <span>Log</span></h2>
 
+        <form action="/app/allWorkout/<%= delLog._id %>/?_method=DELETE" method="POST">
+     
+        <p>Date:<%= delLog.date %></p>
+        <p>Total Sets:<%= delLog.totalSets %></p>
+        <p>Reps for Each Set:<%= delLog.repsForEachSet %></p>
+        <p>Total Duration:<%= delLog.totalDuration %></p>
+        <p>Total Distance: <%= delLog.totaldistance %></p>
+     
+        <input type="submit" value="Delete" class="btn">
+        </form>
+    
     </section>
+  
 </body>
 </html>

@@ -123,6 +123,16 @@ app.post("/app/logs", async (req, res) => {
         console.log("----ERROR TO GET LOG----", error);
     }
 });
+
+app.get("/app/allWorkout/:id/delete", isLoggedIn, async(req, res)=> {
+    try {
+        const logId = req.params.id;
+        const delLog = await Log.findById(logId);
+        res.render("app/deleteWorkout.ejs", {delLog: delLog})
+    } catch (error) {
+        console.log("----ERROR TO DELETE LOG----",error)
+    }
+})
    
 app.put("/app/allWorkout/:id", isLoggedIn, async (req, res) => {
     try {
@@ -142,6 +152,20 @@ app.put("/app/allWorkout/:id", isLoggedIn, async (req, res) => {
         res.redirect("/app/allWorkout");
     }
 });
+
+app.delete("/app/allWorkout/:id", isLoggedIn, async(req,res) => {
+    try {
+        const logId = req.params.id;
+        const eachId = await Log.deleteOne({_id: logId});
+        req.flash("success", "log deleted successfully")
+       res.redirect("/app/allWorkout")
+        }
+     catch (error) {
+        console.log("---Error in deleting log-----", error);
+        req.flash("error", "cannot delete the log")
+    }
+})
+
 
 const server = app.listen(PORT, () => {
     console.log("You are listening on PORT", PORT);
