@@ -6,6 +6,7 @@ const session = require("express-session");
 //const passport = require("passport");
 const passport = require("./config/passport-config");
 const isLoggedIn = require("./middleware/isLoggedIn");
+const methodOverride = require("method-override");
 
 const SECRET_SESSION = process.env.SECRET_SESSION;
 const PORT = process.env.PORT || 3000;
@@ -18,6 +19,7 @@ console.log("Models", {User, Log, Exercise})
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false}));
+app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
 app.use(session({
     secret: SECRET_SESSION,
@@ -112,7 +114,34 @@ app.post("/app/logs", async (req, res) => {
     }
    
    })
+
+   app.get("/app/allWorkout/:id/edit", isLoggedIn, async (req, res) => {
+    try {
+        const eachLog = await Log.findById(req.params.id);
+        res.render("app/editWorkout", { eachLog: eachLog });
+    } catch (error) {
+        console.log("----ERROR TO GET LOG----", error);
+    }
+});
    
+app.put("/app/allWorkout/:id", isLoggedIn, async (req, res) => {
+    try {
+        await Log.updateOne({ _id: req.params.id }, {
+            $set: {
+                date: req.body.date,
+                totalSets: req.body.totalSets,
+                repsForEachSet: req.body.repsForEachSet,
+                totalDuration: req.body.totalDuration,
+                totaldistance: req.body.totaldistance
+            }
+        });
+        res.redirect("/app/allWorkout");
+    } catch (error) {
+        console.log("---Error during editing---", error);
+        req.flash("error", "Error occurred during editing");
+        res.redirect("/app/allWorkout");
+    }
+});
 
 const server = app.listen(PORT, () => {
     console.log("You are listening on PORT", PORT);

@@ -39,19 +39,38 @@
       </header>
 
 
-    <section class="contact" id="contact">
-        <h2 class="heading">All Workout <span>Logs</span></h2>
-     <% for (let i = 0; i < allWorkout.length; i++) { %>
-     <% let list = allWorkout[i]; %>
-     <p>Date: <%=  list.date %></p>
-     <p>totalSets: <%=  list.totalSets %></p>
-     <p>repsForEachSet: <%=  list.repsForEachSet %></p>
-     <p>totalDuration: <%=  list.totalDuration %></p>
-     <p>totaldistance: <%=  list.totaldistance %></p>
-     <a href="/app/allWorkout/<%= list._id %>/edit/">Edit Log</a>
-     <% console.log("each workout",list) %>
-     <% } %>
+      <section class="contact" id="contact">
+        <h2 class="heading">Edit Workout <span>Log</span></h2>
 
+        <form action="/app/allWorkout/<%= eachLog._id %>/?_method=PUT" method="POST">
+
+            <div class="input-box">
+
+                <div>
+                    <input type="date" placeholder="date" name="date" required>
+                </div>
+
+                <div>
+                    <input type="text" placeholder="totalSets" name="totalSets" required>
+                </div>
+                
+                <div>
+                    <input type="text" placeholder="repsForEachSet" name="repsForEachSet" required>
+                </div>
+                
+                <div>
+                    <input type="text" placeholder="totalDuration" name="totalDuration">
+                </div>
+                
+                <div>
+                    <input type="text" placeholder="totaldistance" name="totaldistance">
+                </div>
+                
+            </div>
+            <input type="submit" value="Edit Logs" class="btn">
+        </form>
+    
     </section>
+  
 </body>
 </html>
