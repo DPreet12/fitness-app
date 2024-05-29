@@ -189,6 +189,31 @@ app.get("/app/showExercises/:logid", isLoggedIn, async(req,res) => {
 })
 
 
+
+app.get("/app/editExercise/:exerciseId/edit", async(req, res)=> {
+    try {
+        const exerciseId = req.params.exerciseId;
+        console.log("see edit logId",exerciseId);
+    //   const findId = await Exercise.updateOne({_id: logId}, {
+    //     $set: {
+    //         type: req.body.type,
+    //         duration: req.body.duration,
+    //         distance: req.body.distance,
+    //         sets: req.body.sets,
+    //         reps: req.body.reps,
+    //         notes: req.body.notes
+    //     }
+    //   })
+
+    const findId = await Exercise.findById(exerciseId)
+
+        res.render("app/editExercise", {findId: findId})
+    } catch (error) {
+        console.log("---error editing the exercise-----")
+    }
+})
+
+
 app.post("/app/exercise/:logId", async (req,res)=> {
 
     const logId = req.params.logId
@@ -211,6 +236,29 @@ app.post("/app/exercise/:logId", async (req,res)=> {
     req.flash("error", "please use the appropriate format");
     res.redirect("/app/exercise/${logId}")
    }
+});
+
+
+app.put("/app/editExercise/:exerciseId", async(req, res)=> {
+    console.log("---updated exercise---", req.body)
+    try {
+        const exerciseId = req.params.exerciseId;
+        const findId = await Exercise.updateOne({ _id: exerciseId}, {
+            $set: {
+                type: req.body.type,
+                duration: req.body.duration,
+                distance: req.body.distance,
+                sets: req.body.sets,
+                reps: req.body.reps,
+                notes: req.body.notes
+            }
+        })
+        
+        res.redirect("/app/allWorkout")
+      //  res.redirect("/app/showExercises")
+    } catch (error) {
+        console.log("---error to edit exercise-----", error)
+    }
 })
 
 const server = app.listen(PORT, () => {
