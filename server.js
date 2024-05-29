@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 3000;
 
 //import models
 const { User, Log, Exercise, Food } = require("./models");
+const { updateOne } = require("./models/user");
 console.log("Models", {User, Log, Exercise, Food})
 
 
@@ -306,6 +307,16 @@ app.get("/app/showfood/:foodId", async(req, res)=> {
     }
 })
 
+app.get("/app/editfood/:foodId/edit", async(req, res)=> {
+    try {
+        const foodId = req.params.foodId;
+
+        const specificFoodId = await Food.findById(foodId)
+        res.render("app/editFood", {foodIdNew: specificFoodId})
+    } catch (error) {
+        console.log("---error editing the foods--", error)
+    }
+})
 
 app.post("/app/food/:foodId", async(req,res) => {
     try {
@@ -324,6 +335,24 @@ app.post("/app/food/:foodId", async(req,res) => {
       console.log("new food", newFood);
     } catch (error) {
         console.log("---error to post foods---",error)
+    }
+})
+
+app.put("/app/editfood/:foodId", async(req, res) => {
+    console.log("---updated food---", req.body)
+    try {
+        const foodId = req.params.foodId;
+
+        const updateFood = await Food.updateOne({_id: foodId}, {$set : {
+            meal1: req.body.meal1,
+            meal2: req.body.meal2,
+            meal3: req.body.meal3,
+            meal4: req.body.meal4,
+        }})
+
+        res.redirect("/app/allWorkout")
+    } catch (error) {
+        console.log("---error to error showing edited foods---",error)
     }
 })
 

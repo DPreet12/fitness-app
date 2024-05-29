@@ -33,29 +33,42 @@
             <li><a href="/auth/logout">Logout</a></li>
             <li><a href="/profile">Profile</a></li>
             <li><a href="/app/logs">New Log</a></li>
-           
             <% } %> 
           </ul>
         </nav>
       </header>
 
 
-    <section class="contact" id="contact">
-        <h2 class="heading">All Assigned<span>Exercises</span></h2>
-     <% for (let i = 0; i < food.foods.length; i++) { %>
-     <% let list = food.foods[i]; %>
-    
-     <p>meal1: <%=  list.meal1 %></p>
-     <p>meal2: <%=  list.meal2 %></p>
-     <p>meal3: <%=  list.meal3 %></p>
-     <p>meal4: <%=  list.meal4 %></p>
-    
-     <a href="/app/editfood/<%= list._id %>/edit" >Edit Food</a>
-     <a href="/app/deletefood/<%= list._id %>/delete" >Delete Food</a>
+      <section class="contact" id="contact">
+        <h2 class="heading">Edit Workout <span>Log</span></h2>
 
-     <% } %>
-
-     
+        
+    <form action="/app/editfood/<%= foodIdNew._id %>?_method=PUT" method="POST">
+    
+        <div class="input-box">
+  
+          <div>
+              <input type="text" placeholder="meal1" name="meal1">
+          </div>
+  
+          <div>
+              <input type="text" placeholder="meal2" name="meal2">
+          </div>
+  
+          <div>
+              <input type="text" placeholder="meal3" name="meal3">
+          </div>
+  
+          <div>
+              <input type="text" placeholder="meal4" name="meal4">
+          </div>
+      </div>
+      <input type="submit" value="Add Food" class="btn">
+  
+      </form>
+        
+        
     </section>
+  
 </body>
 </html>
