@@ -21,7 +21,7 @@
          <div class="alert alert-danger"><%= msg %></div>
         <% }) %>
     <% } %>
-    
+
     <header>
         <nav class="navbar">
           <ul>
@@ -40,21 +40,39 @@
 
 
     <section class="contact" id="contact">
-        <h2 class="heading">All Workout <span>Logs</span></h2>
-     <% for (let i = 0; i < allWorkout.length; i++) { %>
-     <% let list = allWorkout[i]; %>
-     <p>Date: <%=  list.date %></p>
-     <p>totalSets: <%=  list.totalSets %></p>
-     <p>repsForEachSet: <%=  list.repsForEachSet %></p>
-     <p>totalDuration: <%=  list.totalDuration %></p>
-     <p>totaldistance: <%=  list.totaldistance %></p>
-     <a href="/app/allWorkout/<%= list._id %>/edit/">Edit Log</a>
-     <a href="/app/allWorkout/<%= list._id %>/delete/">Delete Log</a>
-     <a href="/app/showExercises/<%= list._id %>/">View Exercise</a>
-     <a href="/app/exercise/<%= list._id %>/">Add Exercise</a>
-     <% console.log("each workout",list) %>
-     <% } %>
+        <h2 class="heading">Create new Exercise for this<span>Log</span></h2>
 
+        <form action="/app/exercise/<%= logId %>" method="POST">
+            <div class="input-box">
+                
+             
+                <div>
+                    <input type="type" placeholder="type" name="type" required>
+                </div>
+
+                <div>
+                    <input type="text" placeholder="duration" name="duration" required>
+                </div>
+                
+                <div>
+                    <input type="text" placeholder="distance" name="distance" required>
+                </div>
+                
+                <div>
+                    <input type="text" placeholder="sets" name="sets">
+                </div>
+                
+                <div>
+                    <input type="text" placeholder="reps" name="reps">
+                </div>
+                
+                <div>
+                    <input type="text" placeholder="notes" name="notes">
+                 </div>
+            
+            </div>
+            <input type="submit" value="Add Exercise" class="btn">
+        </form>
     </section>
 </body>
 </html>

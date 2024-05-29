@@ -167,6 +167,52 @@ app.delete("/app/allWorkout/:id", isLoggedIn, async(req,res) => {
 })
 
 
+// Add exercises route
+
+app.get("/app/exercise/:logId", isLoggedIn, (req,res) => {
+    const logId = req.params.logId;
+    console.log("see exercise logId", logId)
+    res.render("app/exercise", {logId: logId})
+})
+
+
+app.get("/app/showExercises/:logid", isLoggedIn, async(req,res) => {
+
+    try {
+        const logId = req.params.logid;
+        console.log("see 2nd logId", logId)
+        const log = await Log.findById(logId).populate("exercises");
+        res.render("app/showExercises", {log2 : log})
+    } catch (error) {
+        console.log("---Error in getting exercises---", error)
+    }
+})
+
+
+app.post("/app/exercise/:logId", async (req,res)=> {
+
+    const logId = req.params.logId
+   try {
+    
+    const newExercise  = await Exercise.create({
+        type: req.body.type,
+        duration: req.body.duration,
+        distance: req.body.distance,
+        sets: req.body.sets,
+        reps: req.body.reps,
+        notes: req.body.notes
+    })
+
+    await Log.findByIdAndUpdate(logId , {$push: {exercises: newExercise._id}})
+    console.log("new exercise", newExercise);
+    res.redirect("/app/allWorkout")
+   } catch (error) {
+    console.log("---Error in posting a exercise---", error);
+    req.flash("error", "please use the appropriate format");
+    res.redirect("/app/exercise/${logId}")
+   }
+})
+
 const server = app.listen(PORT, () => {
     console.log("You are listening on PORT", PORT);
 })
