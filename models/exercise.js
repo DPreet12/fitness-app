@@ -6,7 +6,8 @@ const exerciseSchema = new mongoose.Schema( {
     distance: Number,
     sets: Number,
     reps: Number,
-    notes: String
+    notes: String,
+    foods: [{ type: mongoose.Schema.Types.ObjectId, ref: "Food"}]
 }, { 
     timestamps: true});
 

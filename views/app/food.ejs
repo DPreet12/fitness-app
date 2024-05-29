@@ -21,7 +21,7 @@
          <div class="alert alert-danger"><%= msg %></div>
         <% }) %>
     <% } %>
-    
+
     <header>
         <nav class="navbar">
           <ul>
@@ -33,7 +33,6 @@
             <li><a href="/auth/logout">Logout</a></li>
             <li><a href="/profile">Profile</a></li>
             <li><a href="/app/logs">New Log</a></li>
-           
             <% } %> 
           </ul>
         </nav>
@@ -41,24 +40,31 @@
 
 
     <section class="contact" id="contact">
-        <h2 class="heading">All Assigned<span>Exercises</span></h2>
-     <% for (let i = 0; i < log2.exercises.length; i++) { %>
-     <% let list = log2.exercises[i]; %>
-     <p>Type: <%=  list.type %></p>
-     <p>Duration: <%=  list.duration %></p>
-     <p>Distance: <%=  list.distance %></p>
-     <p>Sets: <%=  list.sets %></p>
-     <p>Reps: <%=  list.reps %></p>
-     <p>Notes: <%=  list.notes %></p>
-     <a href="/app/editExercise/<%= list._id %>/edit">Edit Exercise </a>
-     <a href="/app/deleteExercise/<%= list._id %>/delete">Delete Exercise</a>
-     <a href="/app/showfood/<%= list._id %>">View Food</a>
-     <a href="/app/food/<%= list._id %>">Add Food</a>
+        <h2 class="heading">Document your own<span>Meals</span></h2>
+
+    <form action="/app/food/<%= foodId %>" method="POST">
     
-     
-     
-     <% console.log("each exercise",list) %>
-     <% } %>
+      <div class="input-box">
+
+        <div>
+            <input type="text" placeholder="meal1" name="meal1">
+        </div>
+
+        <div>
+            <input type="text" placeholder="meal2" name="meal2">
+        </div>
+
+        <div>
+            <input type="text" placeholder="meal3" name="meal3">
+        </div>
+
+        <div>
+            <input type="text" placeholder="meal4" name="meal4">
+        </div>
+    </div>
+    <input type="submit" value="Add Food" class="btn">
+
+    </form>
 
     </section>
 </body>

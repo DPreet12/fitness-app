@@ -7,7 +7,8 @@ mongoose.connect(process.env.MONGO_URI);
 
 const  User  = require("./user");
 const Log = require("./logs");
-const Exercise = require("./exercise")
+const Exercise = require("./exercise");
+const Food = require("./food")
 
 const db = mongoose.connection;
 
@@ -18,5 +19,6 @@ module.exports = {
     // models go
     User,
     Log,
-    Exercise
+    Exercise,
+    Food
 }

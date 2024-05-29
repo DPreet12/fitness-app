@@ -13,8 +13,8 @@ const PORT = process.env.PORT || 3000;
 
 
 //import models
-const { User, Log, Exercise } = require("./models");
-console.log("Models", {User, Log, Exercise})
+const { User, Log, Exercise, Food } = require("./models");
+console.log("Models", {User, Log, Exercise, Food})
 
 
 app.set("view engine", "ejs");
@@ -285,6 +285,48 @@ app.delete("/app/deleteExercise/:delId", isLoggedIn, async(req, res)=> {
     console.log("--error in deleting exercise----")
  }
 })
+
+app.get("/app/food/:foodId", async(req, res) => {
+    
+    try {
+        const foodId = req.params.foodId;
+        res.render("app/food", {foodId: foodId})
+    } catch (error) {
+        console.log("---error to find foods---",error)
+    }
+})
+
+app.get("/app/showfood/:foodId", async(req, res)=> {
+    try {
+        const foodId = req.params.foodId;
+        const food = await Exercise.findById(foodId).populate("foods")
+        res.render("app/showFood", {food: food})
+    } catch (error) {
+        console.log("---error shoing the foods--", error)
+    }
+})
+
+
+app.post("/app/food/:foodId", async(req,res) => {
+    try {
+        const foodId = req.params.foodId;
+     
+      const newFood = await Food.create({
+        meal1 : req.body.meal1,
+        meal2: req.body.meal2,
+        meal3: req.body.meal3,
+        meal4: req.body.meal4,
+        notes: req.body.notes
+      })
+
+      await Exercise.findByIdAndUpdate(foodId, {$push: {foods: newFood._id}})
+      res.redirect("/app/allWorkout")
+      console.log("new food", newFood);
+    } catch (error) {
+        console.log("---error to post foods---",error)
+    }
+})
+
 
 const server = app.listen(PORT, () => {
     console.log("You are listening on PORT", PORT);
