@@ -190,6 +190,7 @@ app.get("/app/showExercises/:logid", isLoggedIn, async(req,res) => {
 
 
 
+
 app.get("/app/editExercise/:exerciseId/edit", async(req, res)=> {
     try {
         const exerciseId = req.params.exerciseId;
@@ -210,6 +211,19 @@ app.get("/app/editExercise/:exerciseId/edit", async(req, res)=> {
         res.render("app/editExercise", {findId: findId})
     } catch (error) {
         console.log("---error editing the exercise-----")
+    }
+})
+
+app.get("/app/deleteExercise/:delId/delete", isLoggedIn, async(req,res)=> {
+    try {
+        
+          const delId = req.params.delId
+          const delId2 = await Exercise.findById(delId)
+       
+       res.render("app/deleteExercise", {delId2: delId2})
+    } catch (error) {
+        console.log("---Error in deleting exercise exercises---", error)
+    
     }
 })
 
@@ -259,6 +273,17 @@ app.put("/app/editExercise/:exerciseId", async(req, res)=> {
     } catch (error) {
         console.log("---error to edit exercise-----", error)
     }
+})
+
+app.delete("/app/deleteExercise/:delId", isLoggedIn, async(req, res)=> {
+ try {
+    const delId = req.params.delId
+    const findId = await Exercise.deleteOne({_id: delId});
+    req.flash("success", "exercise deleted successfully")
+       res.redirect("/app/allWorkout")
+ } catch (error) {
+    console.log("--error in deleting exercise----")
+ }
 })
 
 const server = app.listen(PORT, () => {
