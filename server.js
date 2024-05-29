@@ -318,6 +318,19 @@ app.get("/app/editfood/:foodId/edit", async(req, res)=> {
     }
 })
 
+app.get("/app/deletefood/:foodId/delete", async(req, res)=> {
+    try {
+        const delFood = req.params.foodId;
+
+        const delFoodId = await Food.findById(delFood);
+        console.log(delFoodId)
+        res.render("app/deleteFood", {delFoodId2: delFoodId})
+    } catch (error) {
+        console.log("error deleting the food", error)
+    }
+})
+
+
 app.post("/app/food/:foodId", async(req,res) => {
     try {
         const foodId = req.params.foodId;
@@ -356,6 +369,18 @@ app.put("/app/editfood/:foodId", async(req, res) => {
     }
 })
 
+app.delete("/app/deletefood/:foodId", async(req, res) => {
+
+try {
+    const foodId = req.params.foodId;
+
+    const delId = await Food.deleteOne({_id: foodId});
+    res.redirect("/app/allWorkout")
+} catch (error) {
+    console.log("--error deleting the food-----")
+}
+
+})
 
 const server = app.listen(PORT, () => {
     console.log("You are listening on PORT", PORT);
