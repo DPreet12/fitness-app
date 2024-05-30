@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   text-decoration: none;
+   border: none;
+   outline: none;
+   scroll-behavior: smooth;
+   font-family: "Poppins", sans-serif;
+}
+
+:root {
+   --bg-color: #022140;
+   --second-bg-color: #a12368;
+   --text-color: #fff;
+   --main-color: #0ff;
+}
+
+html {
+   font-size: 62.5%;
+   overflow-x: hidden;
+}
+
+body {
+   background: var(--bg-color);
+   color: var(--text-color);
+}
+
+.header {
+    position: fixed;
+    font-size: 1.5rem;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 3%;
+    background: var(--bg-color);
+    z-index: 100;
+}
+
+.navbar  {
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--second-bg-color);
+}
+
+.navbar a:hover {
+    color: var(--main-color);
+}
+
+span {
+   color: var(--main-color);
+}
+
+.contact .heading {
+    font-size: 4.5rem;
+    margin-top: 2.5em;
+    text-align: center;
+}
+
+.contact {
+    width: 100%;
+    padding: 1em 5em;
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
+}
+
+.timeline-column {
+     display: flex; 
+    flex-direction: column;
+    /* border: 2px solid salmon; */
+    align-items: center;
+    width: 100%; 
+    
+}
+
+.timeline-column .timeline-content {
+    border: 2px solid var(--main-color);
+    font-size: 1.5em;
+    border-radius: 0.5em;
+    margin: 1em 0 ;
+    padding: 1em; 
+    max-width: 70vw;
+    width: 100%; 
+}
+
+.timeline-content a {
+    text-decoration: none;
+    padding: 1em 2em 1em 0;
+    transition: color 0.5s ease;
+    color: var(--second-bg-color);
+}
+
+.timeline-content a:hover {
+    color: var(--main-color);
+}
+
+
