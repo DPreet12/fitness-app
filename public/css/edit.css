@@ -102,7 +102,7 @@ span {
     line-height: 1.8;
     
     border-radius: .5em;
-    background-color: var(--main-color);
+    background-color: rgb(45, 180, 180);
 }
 
 .input input::placeholder{

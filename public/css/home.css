@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   text-decoration: none;
+   border: none;
+   outline: none;
+   scroll-behavior: smooth;
+   font-family: "Poppins", sans-serif;
+}
+
+:root {
+   --bg-color: #022140;
+   --second-bg-color: #a12368;
+   --text-color: #fff;
+   --main-color: #0ff;
+}
+
+html {
+   font-size: 62.5%;
+   overflow-x: hidden;
+}
+
+body {
+   background: var(--bg-color);
+   color: var(--text-color);
+}
+
+.header {
+    position: fixed;
+    font-size: 1.5rem;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 3%;
+    background: var(--bg-color);
+    z-index: 100;
+}
+
+.navbar  {
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--second-bg-color);
+}
+
+.navbar a:hover {
+    color: var(--main-color);
+}
+
+span {
+   color: var(--main-color);
+}
+
+.contact .heading {
+    font-size: 4.5rem;
+    margin-top: 2.5em;
+    text-align: center;
+}
+
+.contact {
+    width: 100%;
+    padding: 1em 5em;
+    display: flex;
+    flex-direction: column;  
+    /* align-items: center; */
+}
+
+.contact form {
+    width: 100%;
+    max-width: 70vw;
+    margin: 1rem auto;
+    text-align: center;
+    margin-bottom: 3rem;
+    
+    /* background: var(--second-bg-color); */
+    padding: 2rem;
+    
+}
+
+.contact form .input-box {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.contact .input-box .input {
+    padding: 1em;
+    font-size: 1.5em;
+    
+   /* border: 2px solid salmon;  */
+}
+
+.input input {
+    padding: .5em;
+    width: 100%;
+    max-width: 30vw;
+    line-height: 1.8;
+    
+    border-radius: .5em;
+    background-color: rgb(45, 180, 180);
+}
+
+.input input::placeholder{
+    color: var(--bg-color);
+   opacity: 0.9;
+}
+
+ .contact .btn {
+    background-color: var(--second-bg-color);
+    padding: .7em;
+    width: 7em;
+    margin: 1em;
+    border-radius: .5em;
+    font-size: 1.6em;
+    text-align: center;
+    color: var(--bg-color);
+    transition: .5s ease;
+    
+}
+.contact .btn:hover {
+    /* background-color: #0ff; */
+    box-shadow:  0 0 1.5rem var(--main-color);
+}
+
