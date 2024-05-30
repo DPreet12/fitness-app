@@ -62,7 +62,7 @@ router.post("/logs", async (req, res) => {
    //console.log("---------logs array------",logs)
    
      console.log(newLog)
-     res.redirect("/app/logs")
+     res.redirect("/app/allWorkout")
    
     } catch (error) {
        console.log('----- ERROR IN LOGS POST ----', error);
