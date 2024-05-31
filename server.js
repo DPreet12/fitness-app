@@ -50,8 +50,9 @@ app.get("/", (req, res) => {
 
 //--Authenticated route----go to user profille page--
 app.get("/profile", isLoggedIn, (req, res) => {
-   const { name, email, phone } = req.user;
-   res.render("profile", { name,email,phone})
+    newUser = req.user.id
+   const { name, email, phone, weight, height, level, goal, gender } = req.user;
+   res.render("profile", { name, email, phone, weight, height, level, goal, gender})
 })
 
 app.use("/app", require("./controllers/log"));

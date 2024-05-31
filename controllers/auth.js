@@ -38,6 +38,12 @@ router.post("/signup", async(req, res)=> {
            name: req.body.name,
            email: req.body.email,
            phone: req.body.phone,
+           password: req.body.password,
+           weight: req.body.weight,
+           height: req.body.height,
+           gender: req.body.gender,
+           level: req.body.level,
+           goal: req.body.goal,
            password: req.body.password
        });
   
