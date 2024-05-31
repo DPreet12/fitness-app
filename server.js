@@ -50,10 +50,49 @@ app.get("/", (req, res) => {
 
 //--Authenticated route----go to user profille page--
 app.get("/profile", isLoggedIn, (req, res) => {
-    newUser = req.user.id
+    newUser = req.user._id
    const { name, email, phone, weight, height, level, goal, gender } = req.user;
    res.render("profile", { name, email, phone, weight, height, level, goal, gender})
+});
+
+app.get("/profile/edit/:profileId", isLoggedIn, async(req,res)=> {
+    const profile = req.params.profileId;
+    console.log("profile Id", profile)
+
+          res.render("editProfile", {profile: profile})
+
+
 })
+
+
+
+app.put("/profile/edit/:profileId", isLoggedIn, async(req, res)=> {
+
+    
+    try {
+        const profileId = req.params.profileId
+        const updateProfile = await User.updateOne({_id: profileId}, {
+            
+                $set: {
+                    name : req.body.name,
+                    email : req.body.email,
+                     phone: req.body.phone,
+                      weight: req.body.weight,
+                       height: req.body.height, 
+                       level: req.body.level,
+                        goal: req.body.goal,
+                         gender: req.body.gender
+                
+            }
+        })
+        res.redirect("/profile")
+        
+    } catch (error) {
+        console.log("---error editing the profile---", error)
+    }
+});
+
+
 
 app.use("/app", require("./controllers/log"));
 app.use("/app", require("./controllers/exercise"));
