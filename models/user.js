@@ -15,6 +15,11 @@ const userSchema = new mongoose.Schema( {
             },
             required: [true, "Your phone number is required"]
     },
+    weight: { type: String, required: true},
+    height: {type: String, required: true},
+    gender: { type: String, required: true},
+    level: { type: String, required: true},
+    goal: { type: String, required: true},
     logs: [{ type: mongoose.Schema.Types.ObjectId, ref:"Log"}]
 }, {timestamps: true});
 
