@@ -49,8 +49,40 @@
             </div>
             <div class="input-box">
                 <input type="email" placeholder="Email" name="email">
-                <input type="password" placeholder="Password" name="password">
+                <input type="text" placeholder="Weight" name="weight">
             </div>
+
+            <div class="input-box">
+              <input type="text" placeholder="Height" name="height">
+              <input type="text" placeholder="Gender" name="gender">
+          </div>
+
+          <div class="input-box">
+
+            <!-- <input type="text" placeholder="Level" name="level"> -->
+
+            <select name="level" class="select" required>
+              <option value="" disabled></option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="abvance">Advance</option>
+            </select>
+           
+            <!-- <input type="text" placeholder="Goal" name="goal"> -->
+
+            <select name="goal" class="select" required>
+              <option value="" disabled></option>
+              <option value="weightLoss">Weight Loss</option>
+              <option value="flexibility">Flexibility</option>
+              <option value="endurance">Endurance</option>
+            </select>
+          </div>
+
+          
+          <div class="input-box">
+            <input type="password" placeholder="Password" name="password">
+          </div>
+
             <input type="submit" value="Sign Up" class="btn">
         </form>
     </section>
