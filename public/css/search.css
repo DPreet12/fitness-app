@@ -68,63 +68,53 @@ span {
     display: flex;
     flex-direction: column;  
     /* align-items: center; */
+  
 }
 
 .contact form {
-    width: 50%;
-    max-width: 70vw;
-    margin: 1rem auto;
+    width: 100%;
+    max-width: 40vw;
+    margin: 3rem auto;
     text-align: center;
     margin-bottom: 3rem;
     
+    /* background: var(--second-bg-color); */
+    padding: 1rem;
     border: 2px solid var(--main-color);
-    border-radius: 2em;
-    padding: 2rem;
-    
 }
 
-.contact form p {
-    /* border: 2px solid salmon; */
-    font-size: 1.6em;
-    padding: 1em;
-    width: 100%;
-    
-}
-/* 
 .contact form .input-box {
-    display: flex;
-    flex-direction: column;
-    
+ font-size: 2em;
+ margin: .5em;
+ line-height: 1.8;
+
 }
 
-
-
-.contact .input-box .input {
-    padding: 1em;
-    font-size: 1.5em;
-    
-   /* border: 2px solid salmon;  */
-/* }
-
-.input input {
+.input-box input {
     padding: .5em;
-    width: 100%;
-    max-width: 30vw;
-    line-height: 1.8;
-    
-    border-radius: .5em;
-    background-color: var(--main-color);
+    width: 30%;
+    /* border: 2px solid yellow; */
+    margin: 1em .3em 1em .3em;
+    background: var(--main-color);
+    border-radius: .7em;
+    color: var(--bg-color);
 }
 
-.input input::placeholder{
-    color: var(--bg-color);
-   opacity: 0.9;
-} */ 
 
- .contact .btn {
+.input-box input::placeholder {
+    font-size: 0.9em;
+    
+}
+
+
+.input-box input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 90px var(--main-color) inset !important
+}
+
+.contact .btn {
     background-color: var(--second-bg-color);
     padding: .7em;
-    width: 7em;
+    width: 7.2em;
     margin: 1em;
     border-radius: .5em;
     font-size: 1.6em;
@@ -137,4 +127,3 @@ span {
     /* background-color: #0ff; */
     box-shadow:  0 0 1.5rem var(--main-color);
 }
-

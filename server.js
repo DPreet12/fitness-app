@@ -73,12 +73,12 @@ app.get("/workout", isLoggedIn, (req, res)=> {
                 thumbnailUrl: video.snippet.thumbnails.medium.url,
                 videoId: video.id.videoId,
                 publishTime:video.snippet.publishTime,
-                channelitle: video.snippet.channelitle
+                channeltitle: video.snippet.channelTitle
             }
             videoArray.push(videoObj)
             console.log("videoArray", videoArray);
         }
-        res.render("wrokout", {videoArray:videoArray})
+        res.render("workout", {videoArray:videoArray})
     })
     .catch(error => {
         console.log("error", error)
