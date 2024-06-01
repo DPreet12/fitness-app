@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 3000;
 //import models
 const { User, Log, Exercise, Food } = require("./models");
 const { updateOne } = require("./models/user");
+const { default: axios } = require("axios");
 console.log("Models", {User, Log, Exercise, Food})
 
 
@@ -43,6 +44,47 @@ app.use((req, res, next)=> {
 app.get("/", (req, res) => {
     res.render("home", {});
 })
+
+app.get("/search", isLoggedIn, (req, res)=> {
+    res.render("search", {})
+});
+
+app.get("/workout", isLoggedIn, (req, res)=> {
+    const API_KEY = process.env.YOUTUBE_KEY
+    console.log("key", API_KEY)
+    const query = req.query.workout
+
+    axios.get("https://www.googleapis.com/youtube/v3/search", {
+        params: {
+            key:API_KEY,
+            part: "snippet",
+            q: query,
+            type: "video"
+        }
+    })
+    .then(response => {
+        let videoArray = [];
+        for(let i = 0; i < response.data.items.length; i++) {
+            let video = response.data.items[i];
+            console.log("video", video);
+            const videoObj = {
+                title: video.snippet.title,
+                description: video.snippet.description,
+                thumbnailUrl: video.snippet.thumbnails.medium.url,
+                videoId: video.id.videoId,
+                publishTime:video.snippet.publishTime,
+                channelitle: video.snippet.channelitle
+            }
+            videoArray.push(videoObj)
+            console.log("videoArray", videoArray);
+        }
+        res.render("wrokout", {videoArray:videoArray})
+    })
+    .catch(error => {
+        console.log("error", error)
+    })
+})
+
 
 // im port auth routes
  app.use("/auth", require("./controllers/auth"));
