@@ -62,6 +62,17 @@ app.get("/profile/edit/:profileId", isLoggedIn, async(req,res)=> {
           res.render("editProfile", {profile: profile})
 
 
+});
+
+app.get("/profile/delete/:delId", isLoggedIn, async(req,res)=> {
+    try {
+        const delId = req.params.delId;
+        console.log("delete id", delId);
+        const findId = await User.findById(delId);
+        res.render("deleteProfile", {delId: findId})
+    } catch (error) {
+        console.log("--error while deleting data---", error)
+    }
 })
 
 
@@ -91,6 +102,32 @@ app.put("/profile/edit/:profileId", isLoggedIn, async(req, res)=> {
         console.log("---error editing the profile---", error)
     }
 });
+
+app.delete("/profile/deleteProfile/:delId", isLoggedIn, async(req, res)=> {
+    try {
+        
+    const delId = req.params.delId;
+    
+    if(delId) {
+        const delUser = await User.deleteOne({_id: delId});
+        console.log("User deleted successfully");
+
+        req.logOut(() => {
+            req.session.destroy(() => {
+                res.redirect("/auth/logout");
+            }) // Logout the user
+        })
+    } else {
+        req.flash("error", "User not found or could not be deleted");
+        res.redirect("/profile");
+    }
+
+    } catch (error) {
+        console.log("--error deleting the user---",error)
+        req.flash("error", "Error deleting the user");
+        res.redirect("/profile")
+    }
+})
 
 
 
