@@ -98,14 +98,9 @@ span {
    margin-bottom: 3em;
 }
 
-.contact .input-box h3 {
-    margin: .2em;
-    /* border: 2px solid salmon; */
-    line-height: .9;
-}
 
 .contact .image  {
-    max-width: 30vw;
+    max-width: 30%;
     height: auto;
     display: flex;
     align-items: center;
@@ -138,13 +133,13 @@ span {
   
     margin: .5em;
     padding: 1em;
-    font-size: 2.5em;
+    font-size: 2.2em;
 }
 
 
 
 
-.contact .input-box .btn  {
+.contact .btn  {
     background-color: var(--second-bg-color);
     padding: .7em;
     width: 7em;
@@ -163,3 +158,77 @@ span {
     box-shadow:  0 0 1.5rem var(--main-color);
 }
 
+@media (max-width: 768px) {
+   html {
+        font-size: 55%;
+    }
+    section {
+        padding: 10rem 3% 2rem;
+       
+    }
+    .contact .heading {
+        font-size: 2.5rem;
+        margin-top: .3em;
+        align-items: right;
+        
+        padding: 1em;
+    }
+    .contact .input-box{
+        max-width: 50%;
+         /* font-size: 1.4em; */
+         
+    }
+    .contact .input-box h3{
+        padding: .3em;
+         /* font-size: 1.4em; */
+         
+    }
+    
+    .contact .image {
+        max-width: 70em;
+    }
+}
+@media (max-width: 620px) {
+    .input {
+       flex-direction: column;
+        
+    }
+    .contact .input-box {
+        max-width: 80%;
+        margin: 0 auto;
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+    .contact .image {
+        max-width: 50vw;
+        margin: 0 auto;
+        padding-top: 2em;
+        /* border: 2px solid salmon; */
+    }
+    @media (max-width: 450px) {
+
+        .contact .input-box {
+            max-width: 50em;
+           display: flex;
+           flex-direction: column;
+            /* margin-top: 1em;
+            margin-bottom: 1em; */
+            padding-left: 0;
+            /* text-align: left; */
+            
+        }
+        .contact .input-box h3 {
+            max-width: 50em;
+            margin: 0 auto;
+            /* margin-top: 1em;
+            margin-bottom: 1em; */
+            font-size: 1.5em;
+            flex-wrap: wrap;
+            padding: .5em;
+          
+            /* border: 2px solid salmon; */
+            margin-left: 0;
+        
+        }
+    } 
+}

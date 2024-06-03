@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,7 +43,7 @@
                 <div class="input-box">
                     <h3>Name: <%= food.name %></h3>
                     <h3>Quantity(g): <%= food.quantity %></h3>
-                    <h3>Calories <%= food.calories %></h3>
+                    <h3>Calories(kcal): <%= food.calories %></h3>
                     <h3>Carbohydrates(g): <%= food.carbohydrates %></h3>
                     <h3>Potassium(g): <%= food.potassium %></h3>
                     <h3>Protein(g): <%= food.protein %></h3>
@@ -52,6 +52,7 @@
                     <img src="<%= food.image %>" alt="">
                 </div>
             </div>
+            <a href="/search" class="btn">Go back</a>
           </section>
 
         </body>
