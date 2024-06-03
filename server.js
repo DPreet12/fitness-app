@@ -49,10 +49,17 @@ app.get("/search", isLoggedIn, (req, res)=> {
     res.render("search", {})
 });
 
+const workoutCache = {}
+
 app.get("/workout", isLoggedIn, (req, res)=> {
     const API_KEY = process.env.YOUTUBE_KEY
     console.log("key", API_KEY)
-    const query = req.query.workout
+    const query = req.query.workout;
+
+    if(workoutCache[query]) {
+        console.log("from workout cache");
+        return res.render("workout", {videoArray: workoutCache[query]})
+    }
 
     axios.get("https://www.googleapis.com/youtube/v3/search", {
         params: {
@@ -78,6 +85,10 @@ app.get("/workout", isLoggedIn, (req, res)=> {
             videoArray.push(videoObj)
             console.log("videoArray", videoArray);
         }
+
+        workoutCache[query] = videoArray;
+
+
         res.render("workout", {videoArray:videoArray})
     })
     .catch(error => {
@@ -85,22 +96,22 @@ app.get("/workout", isLoggedIn, (req, res)=> {
     })
 })
 
+const cache = {}
 app.get("/nutrients", (req, res)=> {
     const API_KEY_NEW = process.env.NUTRITION_KEY;
     console.log("key for nutrition", API_KEY_NEW);
     const ID = process.env.APP_ID;
     const query = req.query.nutrients;
 
-    if(cache.has(query)) {
-        console.log("form cache");
-        const foodObj = cache.get(query);
-        return res.render("nutrients", {food: foodObj})
+    if(cache[query]){
+        console.log("from cache");
+        return res.render("nutrients", {food: cache[query]})
     }
 
     axios( {
         method: "POST",
         url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
-        header: {
+        headers: {
             "Content-Type": "application/json",
             "x-app-id": ID,
             "x-app-key": API_KEY_NEW,
@@ -119,6 +130,8 @@ app.get("/nutrients", (req, res)=> {
             protein: response.data.foods[0].nf_protein,
             image: response.data.foods[0].photo.highres
         }
+        cache[query] = foodObj
+        console.log("from food");
         res.render("nutrients", {food: foodObj})
     })
     .catch(error => {
