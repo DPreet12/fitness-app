@@ -85,7 +85,46 @@ app.get("/workout", isLoggedIn, (req, res)=> {
     })
 })
 
+app.get("/nutrients", (req, res)=> {
+    const API_KEY_NEW = process.env.NUTRITION_KEY;
+    console.log("key for nutrition", API_KEY_NEW);
+    const ID = process.env.APP_ID;
+    const query = req.query.nutrients;
 
+    if(cache.has(query)) {
+        console.log("form cache");
+        const foodObj = cache.get(query);
+        return res.render("nutrients", {food: foodObj})
+    }
+
+    axios( {
+        method: "POST",
+        url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
+        header: {
+            "Content-Type": "application/json",
+            "x-app-id": ID,
+            "x-app-key": API_KEY_NEW,
+        },
+    data: {
+        query: query
+    }
+    })
+    .then(response => {
+        const foodObj = {
+            name: response.data.foods[0].food_name,
+            quantity: response.data.foods[0].serving_qty,
+            calories: response.data.foods[0].nf_calories,
+            carbohydrates: response.data.foods[0].nf_total_carbohydrate,
+            potassium: response.data.foods[0].nf_potassium,
+            protein: response.data.foods[0].nf_protein,
+            image: response.data.foods[0].photo.highres
+        }
+        res.render("nutrients", {food: foodObj})
+    })
+    .catch(error => {
+        console.log("Error", error)
+    });
+});
 // im port auth routes
  app.use("/auth", require("./controllers/auth"));
 // app.use("/pokemon", isLoggedIn, require("./controllers/pokemon"))
