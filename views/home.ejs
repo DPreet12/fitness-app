@@ -26,11 +26,12 @@
   <header class="header">
     <nav class="navbar">
       
-       <a href="/">Home</a>
+       <!-- <a href="/">Home</a> -->
         <% if(!currentUser) { %> 
           <a href="/auth/signup">Signup</a>
           <a href="/auth/login">Login</a>
         <% } else { %> 
+          <a href="/">Home</a>
           <a href="/app/logs">New Log</a>
           <a href="/app/allWorkout">All Workout Logs</a>
           <a href="/profile">Profile</a>
@@ -41,7 +42,7 @@
   </header>
     
     <section class="contact" id="contact">
-        <h2 class="heading"><span>Homepage!</span></h2>
+        <h2 class="heading">Dont know anything about workout <span id="nutrients">Dont Worry!</span> Search your favourite exercises</h2>
 
         <form action="/workout" method="GET">
           <div class="input-box">
@@ -50,7 +51,8 @@
           <input type="submit" value="Search" class="btn">
         </form>
 
-            
+        <h2 class="heading"> Want to know the <span id="nutrients">micronutriets</span> of your food. Search here</h2> 
+
         <form action="/nutrients" method="GET">
           <div class="input-box">
             <input type="text" placeholder="Food Info" name="nutrients" required>
@@ -59,5 +61,25 @@
         </form>
 
     </section>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    
+    <script>
+    const headingLog = document.querySelectorAll("#nutrients");
+    console.log("log",headingLog)
+
+    for( let i = 0; i <headingLog.length; i++ ){
+  let list = headingLog[i];
+
+      const typedLog = new Typed(list, {
+          strings: [list.textContent],
+          typeSpeed: 100,
+          backSpeed: 100,
+          backDelay: 500,
+          loop: true,
+          showCursor: false,
+      })
+    }
+      
+      </script>
 </body>
 </html>

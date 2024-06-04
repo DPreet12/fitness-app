@@ -42,7 +42,7 @@
 
     <section class="contact" id="contact">
       <div class="timeline-column">
-        <h2 class="heading">All Assigned <span>Meals</span></h2>
+        <h2 class="heading">All Assigned <span id="meals">Meals</span></h2>
      <% for (let i = 0; i < food.foods.length; i++) { %>
      <% let list = food.foods[i]; %>
     <div class="timeline-content">
@@ -68,5 +68,18 @@
 
     </div>
     </section>
+
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    
+    <script>const headingLog = document.querySelector("#meals");
+      const typedLog = new Typed(headingLog, {
+          strings: [headingLog.textContent],
+          typeSpeed: 100,
+          backSpeed: 100,
+          backDelay: 500,
+          loop: true,
+          showCursor: false,
+      })
+      </script>
 </body>
 </html>

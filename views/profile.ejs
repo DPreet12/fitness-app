@@ -41,7 +41,7 @@
 
 
     <section class="contact" id="contact">
-        <h2 class="heading">Welcome to your <span>Profile!</span></h2>
+        <h2 class="heading">Welcome to your <span class="profile">Profile!</span></h2>
             <div class="input-box">
                 <h3>Name <span><%= name %>!</h3>
                 <h3>Email <span><%= email %>! </h3>
@@ -55,5 +55,21 @@
                   <a href="/profile/delete/<%= newUser %>" class="btn">Delete</a>
             </div>
     </section>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+  const heading = document.querySelector(".profile")
+            
+            console.log("heading", heading)
+            
+            const typed = new Typed( heading,  {
+                            strings: [heading.textContent],
+                            typeSpeed: 100,
+                            backSpeed: 100,
+                            backDelay: 500,
+                            loop: true,
+                            showCursor: false,
+             })
+    </script>
+   
 </body>
 </html>
