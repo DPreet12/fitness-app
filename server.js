@@ -41,7 +41,7 @@ app.use((req, res, next)=> {
     next(); //going to the route
 });
 
-app.get("/", (req, res) => {
+app.get("/", isLoggedIn, (req, res) => {
     res.render("home", {});
 })
 

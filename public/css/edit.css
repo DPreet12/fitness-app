@@ -102,12 +102,18 @@ span {
     line-height: 1.8;
     
     border-radius: .5em;
+    
     background-color: rgb(45, 180, 180);
+    /* background-color: var(--main-color); */
 }
 
 .input input::placeholder{
     color: var(--bg-color);
    opacity: 0.9;
+}
+
+.input-box input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 200px rgb(45, 180, 180) inset !important;
 }
 
  .contact .btn {

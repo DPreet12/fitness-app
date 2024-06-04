@@ -71,7 +71,7 @@ router.post("/signup", async(req, res)=> {
 
   
    router.post("/login", passport.authenticate("local",  {
-    successRedirect: "/profile",
+    successRedirect: "/",
     failureRedirect: "/auth/login",
     successFlash: "Welcome to your account",
     failureFlash: "Either email or password is incorrect. Please try again"

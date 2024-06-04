@@ -45,7 +45,7 @@ router.get("/deletefood/:foodId/delete", async(req, res)=> {
         const delFood = req.params.foodId;
 
         const delFoodId = await Food.findById(delFood);
-        console.log(delFoodId)
+        // console.log(delFoodId)
         res.render("app/deleteFood", {delFoodId2: delFoodId})
     } catch (error) {
         console.log("error deleting the food", error)
@@ -67,7 +67,7 @@ router.post("/food/:foodId", async(req,res) => {
 
       await Exercise.findByIdAndUpdate(foodId, {$push: {foods: newFood._id}})
       res.redirect("/app/allWorkout")
-      console.log("new food", newFood);
+    //   console.log("new food", newFood);
     } catch (error) {
         console.log("---error to post foods---",error)
     }

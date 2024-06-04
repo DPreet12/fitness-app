@@ -14,7 +14,7 @@ router.get("/allWorkout", isLoggedIn, async (req, res)=> {
 
     try {
         const currentUser = await User.findById(req.user._id).populate("logs")
-        console.log("current user",req.user)
+        // console.log("current user",req.user)
         //const allWorkout = await Log.find({ user: req.user._id});
         //console.log("allworkout",allWorkout)
         const allWorkout = currentUser.logs;
@@ -61,7 +61,7 @@ router.post("/logs", async (req, res) => {
    await User.findByIdAndUpdate(req.user._id, {$push: {logs: newLog}})
    //console.log("---------logs array------",logs)
    
-     console.log(newLog)
+    //  console.log(newLog)
      res.redirect("/app/allWorkout")
    
     } catch (error) {

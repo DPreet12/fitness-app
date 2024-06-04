@@ -82,12 +82,12 @@ router.post("/exercise/:logId", async (req,res)=> {
     })
 
     await Log.findByIdAndUpdate(logId , {$push: {exercises: newExercise._id}})
-    console.log("new exercise", newExercise);
+    // console.log("new exercise", newExercise);
     res.redirect("/app/allWorkout")
    } catch (error) {
     console.log("---Error in posting a exercise---", error);
     req.flash("error", "please use the appropriate format");
-    res.redirect("/app/exercise/${logId}")
+    // res.redirect("/app/exercise/${logId}")
    }
 });
 
@@ -96,6 +96,9 @@ router.put("/editExercise/:exerciseId", async(req, res)=> {
     console.log("---updated exercise---", req.body)
     try {
         const exerciseId = req.params.exerciseId;
+        // const logId = req.query.logId;
+        // console.log("exerciseId",exerciseId)
+        // console.log("logId",logId)
         const findId = await Exercise.updateOne({ _id: exerciseId}, {
             $set: {
                 type: req.body.type,
@@ -107,8 +110,8 @@ router.put("/editExercise/:exerciseId", async(req, res)=> {
             }
         })
         
-        res.redirect("/app/allWorkout")
-      //  res.redirect("/app/showExercises")
+        // res.redirect(`/app/showExercises/${logId}`)
+       res.redirect("/app/allWorkout")
     } catch (error) {
         console.log("---error to edit exercise-----", error)
     }
