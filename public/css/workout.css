@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   text-decoration: none;
+   border: none;
+   outline: none;
+   scroll-behavior: smooth;
+   font-family: "Poppins", sans-serif;
+}
+
+:root {
+   --bg-color: #022140;
+   --second-bg-color: #a12368;
+   --text-color: #fff;
+   --main-color: #0ff;
+}
+
+html {
+   font-size: 62.5%;
+   overflow-x: hidden;
+}
+
+body {
+   background: var(--bg-color);
+   color: var(--text-color);
+}
+
+.header {
+    position: sticky;
+    font-size: 1.5rem;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 3%;
+    background: var(--bg-color);
+    z-index: 100;
+}
+
+.navbar  {
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--second-bg-color);
+}
+
+.navbar a:hover {
+    color: var(--main-color);
+}
+
+span {
+   color: var(--main-color);
+}
+
+.contact .heading {
+    font-size: 3.5rem;
+    margin-top: 1.2em;
+    text-align: center;
+}
+
+.contact {
+    display: grid;
+    width: 100%;
+    padding: 1em 5em;
+    /* border: 2px solid salmon;   */
+   
+}
+
+.timeline-column {
+    display: grid;
+    /* border: 2px solid salmon; */
+    grid-template-columns: repeat(3, 1fr) ;
+   /* grid-template-rows: 1fr 1fr 1fr; */
+   gap: 3rem; 
+   margin: 2em;
+}
+
+.timeline-content {
+ display: grid;
+ gap: 1em;
+ /* border: 2px solid salmon; */
+ padding: 1em;
+}
+
+.timeline-content img{
+    /* border: 2px solid salmon; */
+    width: 100%;
+}
+
+.timeline-content .title {
+    /* border: 2px solid salmon; */
+    font-size: 1.3em;
+    text-align: center;
+    /* display: grid;
+    gap: 1em; */
+    
+}
+
+.contact .btn {
+    background-color: var(--second-bg-color);
+    padding: .1em;
+    width: 7.2em;
+   margin: 0 auto;
+    border-radius: .5em;
+    font-size: 1.6em;
+    text-align: center;
+    color: var(--bg-color);
+    transition: .5s ease;
+    /* border: 2px solid salmon; */
+    transform: translateY(-1em);
+}
+.contact .btn:hover {
+    /* background-color: #0ff; */
+    box-shadow:  0 0 1.5rem var(--main-color);
+}
+
+

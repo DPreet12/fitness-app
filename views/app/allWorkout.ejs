@@ -46,6 +46,8 @@
      <% for (let i = 0; i < allWorkout.length; i++) { %>
      <% let list = allWorkout[i]; %>
      <div class="timeline-content">
+      
+        <div class="text-content">
      <p>Date: <%=  list.date %></p>
      <p>totalSets: <%=  list.totalSets %></p>
      <p>repsForEachSet: <%=  list.repsForEachSet %></p>
@@ -57,6 +59,17 @@
      <a href="/app/exercise/<%= list._id %>/">Add Exercise</a>
      <% console.log("each workout",list) %>
     </div>
+    
+     <div class="image">
+      <img src="/img/logs.jpg" alt="logs" class="src">
+     </div>
+    
+  </div>
+<!--    
+    <div class="image">
+      <img src="/img/logs.jpg" alt="logs" class="src">
+    </div> -->
+
      <% } %>
     </div>
     </section>
