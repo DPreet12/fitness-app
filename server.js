@@ -45,9 +45,9 @@ app.get("/", (req, res) => {
     res.render("home", {});
 })
 
-app.get("/search", isLoggedIn, (req, res)=> {
-    res.render("search", {})
-});
+// app.get("/search", isLoggedIn, (req, res)=> {
+//     res.render("search", {})
+// });
 
 const workoutCache = {}
 
@@ -138,9 +138,9 @@ app.get("/nutrients", (req, res)=> {
         console.log("Error", error)
     });
 });
-// im port auth routes
+// import auth routes
  app.use("/auth", require("./controllers/auth"));
-// app.use("/pokemon", isLoggedIn, require("./controllers/pokemon"))
+
 
 //--Authenticated route----go to user profille page--
 app.get("/profile", isLoggedIn, (req, res) => {
