@@ -11,6 +11,7 @@ router.get("/food/:foodId", async(req, res) => {
     
     try {
         const foodId = req.params.foodId;
+        const logId = req.query.logId
         res.render("app/food", {foodId: foodId})
     } catch (error) {
         console.log("---error to find foods---",error)
@@ -19,9 +20,10 @@ router.get("/food/:foodId", async(req, res) => {
 
 router.get("/showfood/:foodId", async(req, res)=> {
     try {
-        const foodId = req.params.foodId;
-        const food = await Exercise.findById(foodId).populate("foods")
-        res.render("app/showFood", {food: food})
+        const  foodId  = req.params.foodId;
+        const logId = req.query.logId
+        const food = await Exercise.findById(foodId).populate("foods");
+        res.render("app/showFood", {food: food, logId: logId})
     } catch (error) {
         console.log("---error shoing the foods--", error)
     }
@@ -81,6 +83,7 @@ router.put("/editfood/:foodId", async(req, res) => {
             meal2: req.body.meal2,
             meal3: req.body.meal3,
             meal4: req.body.meal4,
+            notes: req.body.notes
         }})
 
         res.redirect("/app/allWorkout")

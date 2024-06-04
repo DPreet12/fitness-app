@@ -58,7 +58,8 @@ span {
 
 .contact .heading {
     font-size: 4.5rem;
-    margin-top: 2.5em;
+    margin-top: 1.5em;
+    margin-bottom: .5em;
     text-align: center;
 }
 
@@ -73,11 +74,13 @@ span {
 .timeline-column {
      display: flex; 
     flex-direction: column;
-    /* border: 2px solid salmon; */
+    
     align-items: center;
     width: 100%; 
     
-}
+    }
+
+
 
 .timeline-column .timeline-content {
     border: 2px solid var(--main-color);
@@ -85,19 +88,91 @@ span {
     border-radius: 0.5em;
     margin: 1em 0 ;
     padding: 1em; 
-    max-width: 70vw;
+   max-width: 70vw;
     width: 100%; 
+   overflow: hidden;
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   
 }
 
-.timeline-content a {
+.timeline-content .text-content a {
     text-decoration: none;
     padding: 1em 2em 1em 0;
     transition: color 0.5s ease;
     color: var(--second-bg-color);
 }
 
-.timeline-content a:hover {
+.timeline-content .text-content a:hover {
     color: var(--main-color);
 }
 
+
+
+ .timeline-column .timeline-content .image {
+  
+   
+   display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+ 
+  margin-top: 1.5em;
+  animation: floatImage 4s ease-in-out infinite;
+}
+
+.timeline-column .timeline-content .image img {
+    max-width: 20vw;
+}
+
+.contact .btn  {
+    background-color: var(--second-bg-color);
+    padding: .7em;
+    width: 7em;
+    /* width: 15%; */
+    /* max-width: 15%; */
+    margin: 1em;
+    border-radius: .5em;
+    font-size: 1.6em;
+    text-align: center;
+    color: var(--bg-color);
+    transition: .5s ease;
+    
+}
+.contact .btn:hover {
+    /* background-color: #0ff; */
+    box-shadow:  0 0 1.5rem var(--main-color);
+}
+
+
+@keyframes floatImage {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-1.5rem);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@media (max-width: 1120px) {
+    html {
+         font-size: 55%;
+     }
+     .timeline-column .timeline-content {
+        width: 90%;
+        border: 2px solid salmon;
+ display: flex;
+ flex-direction: column;
+ 
+        
+     }
+    
+     .timeline-column .timeline-content .image{
+       width: 80%;
+       display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+     }
+    }
 
