@@ -44,7 +44,7 @@
       <section class="contact" id="contact">
         <h2 class="heading">Edit <span>Exercise</span></h2>
 
-        <form action="/app/editExercise/<%= findId._id %>?_method=PUT" method="POST">
+        <form action="/app/editExercise/<%= findId._id %>?_method=PUT&editId=<%= editId %>" method="POST">
 
         <div class="input-box">
         <div class="input">

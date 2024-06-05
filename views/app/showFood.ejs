@@ -53,7 +53,7 @@
      <p>Meal 4: <%=  list.meal4 %></p>
      <p>Notes: <%= list.notes %></p>
     
-     <a href="/app/editfood/<%= list._id %>/edit" >Edit Food</a>
+     <a href="/app/editfood/<%= list._id %>/edit?exerciseId=<%= food._id %>" >Edit Food</a>
      <a href="/app/deletefood/<%= list._id %>/delete" >Delete Food</a>
     </div>
     <div class="image">

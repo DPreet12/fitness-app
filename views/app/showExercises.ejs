@@ -56,7 +56,7 @@
      <p>Sets: <%=  list.sets %></p>
      <p>Reps: <%=  list.reps %></p>
      <p>Notes: <%=  list.notes %></p>
-     <a href="/app/editExercise/<%= list._id %>/edit">Edit Exercise </a>
+     <a href="/app/editExercise/<%= list._id %>/edit/?editId=<%= log2._id %>">Edit Exercise </a>
      <a href="/app/deleteExercise/<%= list._id %>/delete">Delete Exercise</a>
      <a href="/app/showfood/<%= list._id %>?logId=<%= log2._id %>">View Food</a>
      <a href="/app/food/<%= list._id %>">Add Food</a>

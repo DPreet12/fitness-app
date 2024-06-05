@@ -10,8 +10,10 @@ const { User, Log, Exercise, Food} = require("../models");
 
 router.get("/exercise/:logId", isLoggedIn, (req,res) => {
     const logId = req.params.logId;
-    console.log("see exercise logId", logId)
-    res.render("app/exercise", {logId: logId})
+    console.log("see params exercise logId", logId)
+    
+    
+    res.render("app/exercise", {logId: logId});
 })
 
 
@@ -33,7 +35,9 @@ router.get("/showExercises/:logid", isLoggedIn, async(req,res) => {
 router.get("/editExercise/:exerciseId/edit", async(req, res)=> {
     try {
         const exerciseId = req.params.exerciseId;
-        console.log("see edit logId",exerciseId);
+        console.log("see edit params logId",exerciseId);
+        const editId = req.query.editId;
+        console.log("see query edit editId", editId)
     //   const findId = await Exercise.updateOne({_id: logId}, {
     //     $set: {
     //         type: req.body.type,
@@ -47,7 +51,7 @@ router.get("/editExercise/:exerciseId/edit", async(req, res)=> {
 
     const findId = await Exercise.findById(exerciseId)
 
-        res.render("app/editExercise", {findId: findId})
+        res.render("app/editExercise", {findId: findId, editId: editId})
     } catch (error) {
         console.log("---error editing the exercise-----")
     }
@@ -70,6 +74,9 @@ router.get("/deleteExercise/:delId/delete", isLoggedIn, async(req,res)=> {
 router.post("/exercise/:logId", async (req,res)=> {
 
     const logId = req.params.logId
+    // console.log("post params logId", logId);
+    // const logs = req.query.logs;
+    // console.log("query post log", logs)
    try {
     
     const newExercise  = await Exercise.create({
@@ -83,7 +90,7 @@ router.post("/exercise/:logId", async (req,res)=> {
 
     await Log.findByIdAndUpdate(logId , {$push: {exercises: newExercise._id}})
     // console.log("new exercise", newExercise);
-    res.redirect("/app/allWorkout")
+    res.redirect(`/app/showExercises/${logId}`)
    } catch (error) {
     console.log("---Error in posting a exercise---", error);
     req.flash("error", "please use the appropriate format");
@@ -96,6 +103,9 @@ router.put("/editExercise/:exerciseId", async(req, res)=> {
     console.log("---updated exercise---", req.body)
     try {
         const exerciseId = req.params.exerciseId;
+        console.log("put params exerciseId", exerciseId);
+        const editId = req.query.editId;
+        console.log("put query editId", editId)
         // const logId = req.query.logId;
         // console.log("exerciseId",exerciseId)
         // console.log("logId",logId)
@@ -111,7 +121,7 @@ router.put("/editExercise/:exerciseId", async(req, res)=> {
         })
         
         // res.redirect(`/app/showExercises/${logId}`)
-       res.redirect("/app/allWorkout")
+       res.redirect(`/app/showExercises/${editId}`)
     } catch (error) {
         console.log("---error to edit exercise-----", error)
     }
