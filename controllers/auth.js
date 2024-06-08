@@ -44,7 +44,7 @@ router.post("/signup", async(req, res)=> {
            gender: req.body.gender,
            level: req.body.level,
            goal: req.body.goal,
-           password: req.body.password
+           
        });
   
        passport.authenticate("local", {

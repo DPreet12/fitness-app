@@ -35,6 +35,8 @@ router.get("/editfood/:foodId/edit", async(req, res)=> {
 console.log("edit params id", foodId);
 const exerciseId = req.query.exerciseId;
 console.log("edit exercise id", exerciseId);
+// const logId = req.query.logId;
+// console.log("edit log id", logId);
         const specificFoodId = await Food.findById(foodId)
         res.render("app/editFood", {foodIdNew: specificFoodId, exerciseId: exerciseId})
     } catch (error) {
@@ -83,6 +85,9 @@ router.put("/editfood/:foodId", async(req, res) => {
 console.log("edit put foodId", foodId)
 const exerciseId = req.query.exerciseId;
 console.log("put quey exerciseId", exerciseId)
+// const logId = req.query.logId;
+// console.log("put query logId", logId);
+
         const updateFood = await Food.updateOne({_id: foodId}, {$set : {
             meal1: req.body.meal1,
             meal2: req.body.meal2,
