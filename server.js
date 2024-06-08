@@ -45,9 +45,7 @@ app.get("/", isLoggedIn, (req, res) => {
     res.render("home", {});
 })
 
-// app.get("/search", isLoggedIn, (req, res)=> {
-//     res.render("search", {})
-// });
+
 
 const workoutCache = {}
 
@@ -73,7 +71,7 @@ app.get("/workout", isLoggedIn, (req, res)=> {
         let videoArray = [];
         for(let i = 0; i < response.data.items.length; i++) {
             let video = response.data.items[i];
-            // console.log("video", video);
+           
             const videoObj = {
                 title: video.snippet.title,
                 description: video.snippet.description,
@@ -83,7 +81,7 @@ app.get("/workout", isLoggedIn, (req, res)=> {
                 channeltitle: video.snippet.channelTitle
             }
             videoArray.push(videoObj)
-            // console.log("videoArray", videoArray);
+            
         }
 
         workoutCache[query] = videoArray;
