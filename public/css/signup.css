@@ -121,6 +121,7 @@ span {
     -webkit-box-shadow: 0 0 90px var(--main-color) inset !important
 }
 
+
 .contact .btn {
     background-color: var(--second-bg-color);
     padding: .7em;

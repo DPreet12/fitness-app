@@ -138,6 +138,8 @@ app.get("/nutrients", (req, res)=> {
         console.log("Error", error)
     });
 });
+
+
 // import auth routes
 
 app.use("/auth", require("./controllers/auth"));
