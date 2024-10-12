@@ -4,7 +4,7 @@ console.log("-PRINT--",process.env.MONGO_URI);
 // mongoose.connect(process.env.MONGO_URI);
 
 
-const uri = process.env.MONOGO_ATLAS_URI;
+const uri = process.env.MONGO_ATLAS_URI;
 
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 async function run() {
